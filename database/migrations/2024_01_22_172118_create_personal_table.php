@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articulos', function (Blueprint $table) {
+        Schema::create('personal', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_categoria');
-            $table->integer('id_ubicacion');
-            $table->integer('id_encargado');
-            $table->bigInteger('numero_de_serie')->nullable();
-            $table->string('codigoqr')->nullable();
+            $table->string('nombre');
+            $table->integer('id_departamento');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articulos');
+        Schema::dropIfExists('personal');
     }
 };

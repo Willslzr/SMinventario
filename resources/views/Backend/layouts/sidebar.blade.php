@@ -14,9 +14,21 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-wb fa-solid fa-chart-line"></i>
                     <span>Pagina Principal</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('inventario.index')}}">
+                    <i class="fas fa-wb fa-solid fa-table"></i>
+                    <span>Inventario</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('configuracion')}}">
+                    <i class="fas fa-fw fa-spell-check"></i>
+                    <span>Historial de movimientos</span></a>
             </li>
 
             <!-- Divider -->
@@ -36,9 +48,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href="#">Departamentos</a>
+                        <a class="collapse-item" href="#">Personal</a>
+                        <a class="collapse-item" href="#">Categorias</a>
                     </div>
                 </div>
             </li>
@@ -100,9 +112,12 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <a class="nav-link" onclick="this.closest('form').submit()" href="#">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Cerrar Sesion</span></a>
+                </form>
             </li>
 
             <!-- Divider -->
@@ -114,11 +129,11 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
+            {{-- <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="#">Upgrade to Pro!</a>
-            </div>
+            </div> --}}
 
         </ul>
         <!-- End of Sidebar -->
