@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->boolean('consumible');
-            $table->binary('imagen_referencia');
+            $table->string('imagen_referencia');
+            $table->integer('cantidad_inv');
             $table->timestamps();
         });
     }

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Inventario;
+namespace App\Livewire\Configuracion\Categorias;
 
-use App\Models\articulos;
+use App\Models\categorias;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class index extends Component
+class Index extends Component
 {
-
     use WithPagination;
 
     public $search = '';
-    public $sortField = 'id';
+    public $sortField = 'nombre';
     public $sortDirection = 'asc';
     protected $queryString = ['search'];
     public $perPage = 10;
@@ -43,13 +42,12 @@ class index extends Component
     public function render()
     {
 
-        return view('livewire.inventario.index', [
-            'articulos' => articulos::query()
+        return view('livewire.configuracion.categorias.index', [
+            'categorias' => categorias::query()
+            ->where('nombre', 'like', '%'.strtoupper($this->search).'%')
             ->orderBy($this->sortField, $this->sortDirection)
-            ->orderBy('id', $this->sortDirection)
+            ->orderBy('nombre', $this->sortDirection)
             ->paginate($this->perPage)
         ]);
     }
 }
-
-

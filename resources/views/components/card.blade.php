@@ -1,6 +1,6 @@
 <div class="card container-fluid py-0 my-0 col-12 card-shadow bg-gradient-light card-border-rounded">
     @if ($header)
-    <div class="card-header pb-0">
+    <div class="card-header bg-transparent pb-0">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 px-3 pb-2 rounded">
         {{ $header }}
         </div>

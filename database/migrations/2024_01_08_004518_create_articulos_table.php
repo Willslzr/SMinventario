@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('id_categoria');
             $table->integer('id_ubicacion');
             $table->integer('id_encargado');
-            $table->bigInteger('numero_de_serie')->nullable();
+            $table->string('numero_de_serie')->nullable();
             $table->string('codigoqr')->nullable();
             $table->timestamps();
         });

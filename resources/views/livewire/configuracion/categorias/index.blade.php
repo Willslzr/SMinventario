@@ -15,26 +15,15 @@
             <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
         </div>
         <div class="ms-auto">
-                <a href="{{route('inventario.create')}}" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo</a>
+                <a href="#" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo</a>
         </div>
     </div>
-<x-table>
+<x-table class="table-bordered">
     <x-slot name="thead">
         <tr>
-        <th wire:click="sortBy('id')">id
-            <span class="sort-arrow">
-                @if ($sortField === 'id')
-                    @if ($sortDirection === 'asc')
-                        <i class="fas fa-sort-up"></i>
-                    @else
-                        <i class="fas fa-sort-down"></i>
-                    @endif
-                @endif
-            </span>
-        </th>
         <th wire:click="sortBy('nombre')">Nombre
             <span class="sort-arrow">
-                @if ($sortField === 'nombre')
+                @if ($sortField === 'nombres')
                     @if ($sortDirection === 'asc')
                         <i class="fas fa-sort-up"></i>
                     @else
@@ -44,46 +33,47 @@
             </span>
         </th>
         <th>Foto</th>
-        <th>Cantidad</th>
+        <th>Descripcion</th>
         <th>Acciones</th>
         </tr>
     </x-slot>
     <x-slot name="tbody">
-        @if ($articulos->isEmpty())
+        @if ($categorias->isEmpty())
             <tr>
                 <td colspan="7" class="text-center py-4">No hay registros</td>
             </tr>
         @else
-        @foreach ($articulos as $articulo)
+        @foreach ($categorias as $categoria)
             <tr>
-            <td>
-                <h6 class="mb-0 text-sm">{{ $articulo }}</h6>
+            <td style="text-align: center; vertical-align: middle;">
+                <h6 class="mb-0 text-sm">{{ $categoria->nombre }}</h6>
             </td>
-            <td>
-                <h6 class="mb-0 text-sm">#</h6>
+            <td class="text-center">
+                <img src="{{$categoria->imagen_referencia}}" alt="{{$categoria->nombre}}" class="img-fluid img-thumbnail" width="100">
             </td>
-            <td>
-                <h6 class="mb-0 text-sm">#</h6>
+            <td style="text-align: center; vertical-align: middle;">
+                <h6 class="mb-0 text-sm">{{ $categoria->descripcion}}</h6>
             </td>
-            <td>
-                <h6 class="mb-0 text-sm">#</h6>
-            </td>
-            <td>
+
+            <td style="text-align: center; vertical-align: middle;">
                 <div class="btn-group">
-                    <a href="#" class="btn btn-sm btn-info" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
-                        <i class="material-icons text-sm">visibility</i>
+                    <a href="#" class="btn btn-success btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
+                        <i class="fas fa-eye"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-primary" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Editar">
-                        <i class="material-icons text-sm">edit</i>
+                    <a href="#" class="btn btn-warning btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="borrar">
+                        <i class="fas fa-trash"></i>
                     </a>
                 </div>
             </td>
-            </tr >
+            </tr>
         @endforeach
         @endif
     </x-slot>
 </x-table>
 
-{{ $articulos->links() }}
+{{ $categorias->links() }}
 
 </div>

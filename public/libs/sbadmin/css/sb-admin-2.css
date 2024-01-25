@@ -1515,7 +1515,7 @@ pre code {
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #e3e6f0;
+  border: 3px solid #64dfe4;
 }
 
 .table-bordered thead th,
@@ -9503,6 +9503,7 @@ button.bg-dark:focus {
   text-align: center !important;
 }
 
+
 @media (min-width: 576px) {
   .text-sm-left {
     text-align: left !important;
@@ -11285,3 +11286,7 @@ body.sidebar-toggled footer.sticky-footer {
 .ms-auto {
     margin-left: auto !important;
   }
+
+.aling-center-td{
+    vertical-align: middle;
+}
