@@ -17,4 +17,9 @@ class articulos extends Model
         'codigoqr'
     ];
 
+    public function categoria()
+    {
+        return $this->belongsTo('App\Models\categorias', 'id_categoria');
+    }
+
 }

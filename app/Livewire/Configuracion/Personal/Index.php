@@ -45,6 +45,7 @@ class Index extends Component
 
         return view('livewire.configuracion.personal.index', [
             'personal' => personals::query()
+            ->where('nombre', 'like', '%'.strtoupper($this->search).'%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('nombre', $this->sortDirection)
             ->paginate($this->perPage)

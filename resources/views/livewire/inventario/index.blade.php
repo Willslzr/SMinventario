@@ -21,7 +21,7 @@
 <x-table>
     <x-slot name="thead">
         <tr>
-        <th wire:click="sortBy('id')">id
+        {{-- <th wire:click="sortBy('id')">id
             <span class="sort-arrow">
                 @if ($sortField === 'id')
                     @if ($sortDirection === 'asc')
@@ -31,7 +31,7 @@
                     @endif
                 @endif
             </span>
-        </th>
+        </th> --}}
         <th wire:click="sortBy('nombre')">Nombre
             <span class="sort-arrow">
                 @if ($sortField === 'nombre')
@@ -49,33 +49,34 @@
         </tr>
     </x-slot>
     <x-slot name="tbody">
-        @if ($articulos->isEmpty())
+
+        @if ($categorias->isEmpty())
             <tr>
                 <td colspan="7" class="text-center py-4">No hay registros</td>
             </tr>
         @else
-        @foreach ($articulos as $articulo)
+        @foreach ($categorias as $producto)
             <tr>
-            <td>
-                <h6 class="mb-0 text-sm">{{ $articulo }}</h6>
+            {{-- <td>
+                <h6 class="mb-0 text-sm">{{ $producto }}</h6>
+            </td> --}}
+            <td style="text-align: center; vertical-align: middle;">
+                <h6 class="mb-0 text-sm" >{{$producto->nombre}}</h6>
             </td>
-            <td>
-                <h6 class="mb-0 text-sm">#</h6>
+            <td class="text-center">
+                <img src="{{$producto->imagen_referencia}}" alt="{{$producto->nombre}}" class="img-fluid img-thumbnail" width="100">
             </td>
-            <td>
-                <h6 class="mb-0 text-sm">#</h6>
+            <td style="text-align: center; vertical-align: middle;">
+                <h6 class="mb-0 text-sm">{{$producto->cantidad_inv}}</h6>
             </td>
-            <td>
-                <h6 class="mb-0 text-sm">#</h6>
-            </td>
-            <td>
+            <td style="text-align: center; vertical-align: middle;">
                 <div class="btn-group">
                     <a href="#" class="btn btn-sm btn-info" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
-                        <i class="material-icons text-sm">visibility</i>
+                        <i class="fas fa-eye"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-primary" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Editar">
-                        <i class="material-icons text-sm">edit</i>
-                    </a>
+                    <div>
+                        @livewire('mover')
+                    </div>
                 </div>
             </td>
             </tr >
@@ -84,6 +85,16 @@
     </x-slot>
 </x-table>
 
-{{ $articulos->links() }}
+{{ $categorias->links() }}
 
 </div>
+
+@push('custom-scripts')
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('success', () => {
+            alert('Prueba! aqui van los movimientos')
+        });
+    });
+</script>
+@endpush

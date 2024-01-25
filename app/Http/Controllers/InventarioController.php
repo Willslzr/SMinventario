@@ -26,7 +26,7 @@ class InventarioController extends Controller
             $cantidad = $request->input('cantidad');
         }
 
-        $categoria->cantidad_inv = $cantidad;
+        $categoria->cantidad_inv = $categoria->cantidad_inv + $cantidad;
         $categoria->save();
 
         if($categoria->consumible){

@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Inventario;
 
-use App\Models\articulos;
 use Livewire\Component;
+use App\Models\articulos;
+use App\Models\categorias;
 use Livewire\WithPagination;
 
 class index extends Component
@@ -44,7 +45,9 @@ class index extends Component
     {
 
         return view('livewire.inventario.index', [
-            'articulos' => articulos::query()
+            'categorias' => categorias::query()
+            ->where('cantidad_inv', '<>', 0)
+            ->where('nombre', 'like', '%'.strtoupper($this->search).'%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('id', $this->sortDirection)
             ->paginate($this->perPage)

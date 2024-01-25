@@ -16,4 +16,9 @@ class categorias extends Model
     'imagen_referencia',
     'cantidad_inv'
     ];
+
+    public function articulos()
+{
+    return $this->hasMany('App\Models\articulos', 'id_categoria');
+}
 }

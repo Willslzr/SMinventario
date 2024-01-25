@@ -21,13 +21,10 @@
                 @include('Backend.layouts.header')
 
                 @yield('main-content')
-
-
             </div>
             <!-- End of Main Content -->
 
             @include('Backend.layouts.footer')
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -35,8 +32,8 @@
     <!-- End of Page Wrapper -->
 
     @include('Backend.layouts.common-end')
-    @stack('custom-scripts')
 
+    @stack('custom-scripts')
 </body>
 
 </html>
