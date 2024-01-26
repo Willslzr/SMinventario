@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Configuracion\Departamentos;
+namespace App\Livewire\Personal;
 
-use App\Models\departamentos;
 use Livewire\Component;
+use App\Models\personals;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -11,13 +11,12 @@ class Index extends Component
     use WithPagination;
 
     public $search = '';
-    public $sortField = 'departamentos';
+    public $sortField = 'nombre';
     public $sortDirection = 'asc';
     protected $queryString = ['search'];
     public $perPage = 10;
     protected $paginationTheme = 'bootstrap';
 
-    public $area;
 
     public function sortBy($field)
     {
@@ -31,13 +30,6 @@ class Index extends Component
         $this->sortField = $field;
     }
 
-    public function abrirModal($departamento)
-    {
-        $this->area = $departamento;  // Asigna el ID del departamento a la propiedad
-        dd($this->area);
-    }
-
-
     public function updateSearch()
 {
     $this->resetPage(); // Reinicia la paginación
@@ -50,13 +42,12 @@ class Index extends Component
     public function render()
     {
 
-        return view('livewire.configuracion.departamentos.index', [
-            'departamentos' => departamentos::query()
+        return view('livewire.personal.index', [
+            'personal' => personals::query()
             ->where('nombre', 'like', '%'.strtoupper($this->search).'%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('nombre', $this->sortDirection)
-            ->paginate($this->perPage),
-            'area' => $this->area,
+            ->paginate($this->perPage)
         ]);
     }
 }

@@ -74,9 +74,10 @@
                     <a href="#" class="btn btn-sm btn-info" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <div>
-                        @livewire('mover')
-                    </div>
+
+                    <a href="{{ $producto->consumible ? route('inventario.mover', $producto->id) : route('inventario.moverequipo', $producto->id) }}" class="btn btn-sm btn-success" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Asignar">
+                        <i class="fas fa-box"></i>
+                    </a>
                 </div>
             </td>
             </tr >

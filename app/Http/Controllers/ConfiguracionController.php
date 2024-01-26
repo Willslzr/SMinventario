@@ -41,6 +41,15 @@ class ConfiguracionController extends Controller
 
     }
 
+    public function departamentosborrar(request $request){
+
+        dd($request);
+        departamentos::where('id', $request->departamento)
+        ->delete();
+
+        return to_route('configuracion.departamentos')->with('status', 'Departamento eliminado');
+    }
+
     public function personal(){
 
         $departamentos = departamentos::all();

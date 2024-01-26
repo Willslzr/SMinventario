@@ -32,34 +32,41 @@
                 @endif
             </span>
         </th>
-        <th>Descripcion</th>
+        <th>Foto</th>
+        <th>Departamento</th>
         <th>Acciones</th>
         </tr>
     </x-slot>
     <x-slot name="tbody">
-        @if ($departamentos->isEmpty())
+        @if ($personal->isEmpty())
             <tr>
                 <td colspan="7" class="text-center py-4">No hay registros</td>
             </tr>
         @else
-
-        @foreach ($departamentos as $departamento)
+        @foreach ($personal as $item)
             <tr>
             <td style="text-align: center; vertical-align: middle;">
-                <h6 class="mb-0 text-sm">{{ $departamento->nombre }}</h6>
+                <h6 class="mb-0 text-sm">{{ $item->nombre }}</h6>
             </td>
+            <td class="text-center">
+                <img src="{{asset($item->foto)}}" alt="{{$item->nombre}}" class="img-fluid img-thumbnail" width="100">
+            </td>
+
             <td style="text-align: center; vertical-align: middle;">
-                <h6 class="mb-0 text-sm">{{ $departamento->descripcion}}</h6>
+                <h6 class="mb-0 text-sm">{{ $item->departamento->nombre ?? 'Sin departamento' }}</h6>
             </td>
 
             <td style="text-align: center; vertical-align: middle;">
                 <div class="btn-group">
+                    <a href="{{route('personal.show', $item->id)}}" class="btn btn-success btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
+                        <i class="fas fa-eye"></i>
+                    </a>
                     <a href="#" class="btn btn-warning btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Editar">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button class="btn btn-danger btn-circle btn-sm" type="button" data-toggle="modal" data-target="#borrar" wire:click="abrirModal({{ $departamento->id }})">
+                    <a href="#" class="btn btn-danger btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="borrar">
                         <i class="fas fa-trash"></i>
-                    </button>
+                    </a>
                 </div>
             </td>
             </tr>
@@ -68,28 +75,6 @@
     </x-slot>
 </x-table>
 
-{{ $departamentos->links() }}
+{{ $personal->links() }}
 
 </div>
-@section('modal')
-<!-- Modal -->
-<div class="modal fade" id="borrar" tabindex="-1" role="dialog" aria-labelledby="borrarLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <h5 class="modal-title" id="borrarLabel">Seguro que quiere borrar el departamento<span></span>?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{route('configuracion.departamentos.borrar')}}" method="post">
-                @csrf
-                <div class="modal-body">
-                </div>
-                <input type="hidden" name="area" wire:model="area">
-
-                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button><button class="btn btn-primary" type="submit">Borrar</button></div>
-            </form>
-        </div>
-    </div>
-</div>
-@endsection

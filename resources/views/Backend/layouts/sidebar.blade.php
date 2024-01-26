@@ -26,6 +26,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{route('personal.index')}}">
+                    <i class="fas fa-wb fa-solid fa-table"></i>
+                    <span>Personal</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-spell-check"></i>
                     <span>Historial de movimientos</span></a>
@@ -60,14 +66,14 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Complementos
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('test')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <span>Reporte</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

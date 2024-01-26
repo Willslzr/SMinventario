@@ -21,6 +21,7 @@
                 @include('Backend.layouts.header')
 
                 @yield('main-content')
+                @yield('modal')
             </div>
             <!-- End of Main Content -->
 
