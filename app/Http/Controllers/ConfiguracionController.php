@@ -41,15 +41,6 @@ class ConfiguracionController extends Controller
 
     }
 
-    public function departamentosborrar(request $request){
-
-        dd($request);
-        departamentos::where('id', $request->departamento)
-        ->delete();
-
-        return to_route('configuracion.departamentos')->with('status', 'Departamento eliminado');
-    }
-
     public function personal(){
 
         $departamentos = departamentos::all();
@@ -62,31 +53,38 @@ class ConfiguracionController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre' => ['required', 'string', 'max:255'],
             'foto' => ['mimes:jpeg,png,jpg,svg'],
+            'departamento' => ['required'],
         ]);
 
         $validator->setCustomMessages([
             'nombre' => 'Nombre invalido',
+            'departamento' => ['No selecciono departamento']
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $nuevoPersonal = new personals();
-
         if($request->hasFile('foto')){
             $foto = $request->file('foto');
             $carpeta = 'images/perfil/';
             $nombre = time() .  '-' . $foto->getClientOriginalName();
             $carga = $request->file('foto')->move($carpeta, $nombre);
-            $nuevoPersonal->foto = $carpeta . $nombre;
+            $foto = $carpeta . $nombre;
         }else{
-            $nuevoPersonal->foto = 'images/perfil/default.jpg';
+            $foto = 'images/perfil/default.jpg';
         }
 
-        $nuevoPersonal->nombre = strtoupper($request->input('nombre'));
-        $nuevoPersonal->id_departamento = $request->input('departamento');
-        $nuevoPersonal->save();
+
+        $nombre = departamentos::where('id', $request->input('departamento'))
+        ->value('nombre');
+
+        personals::create([
+            'nombre' => strtoupper($request->input('nombre')),
+            'id_departamento' => $request->input('departamento'),
+            'nombre_departamento' =>$nombre,
+            'foto' => $foto
+        ]);
 
         return to_route('configuracion.personal')->with('status', 'Empleado registrado');
 

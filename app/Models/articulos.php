@@ -11,11 +11,17 @@ class articulos extends Model
 
     protected $fillable = [
         'id_categoria',
+        'nombre_categoria',
         'id_ubicacion',
+        'nombre_ubicacion',
         'id_encargado',
+        'nombre_encargado',
         'numero_de_serie',
+        'id_articulo',
         'codigoqr'
     ];
+
+
 
     public function categoria()
     {

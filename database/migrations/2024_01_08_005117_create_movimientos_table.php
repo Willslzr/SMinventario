@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_dep_origen');
-            $table->integer('id_dep_destino');
-            $table->integer('id_usuario_origen');
-            $table->integer('id_usuario_destino');
+            $table->string('departamento_origen');
+            $table->string('departamento_destino');
+            $table->string('usuario_origen');
+            $table->string('usuario_destino');
+            $table->string('nombre_articulo');
             $table->integer('id_articulo');
             $table->timestamps();
         });

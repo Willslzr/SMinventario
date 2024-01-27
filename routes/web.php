@@ -33,13 +33,12 @@ Route::get('/inventario/mover/equipo/{id}',[InventarioController::class, 'movere
 Route::post('/inventario/mover/equipo/asignar',[InventarioController::class, 'asignarequipo'])->middleware('auth')->name('inventario.asignarequipo');
 Route::post('/inventario/move',[InventarioController::class, 'savemove'])->middleware('auth')->name('inventario.savemove');
 
-Route::get('/departamentos',[ConfiguracionController::class, 'departamentos'])->middleware('auth')->name('configuracion.departamentos');
-Route::post('/departamentos/store',[ConfiguracionController::class, 'departamentosstore'])->middleware('auth')->name('configuracion.departamentos.store');
-Route::post('/departamentos/borrar',[ConfiguracionController::class, 'departamentosborrar'])->middleware('auth')->name('configuracion.departamentos.borrar');
-Route::get('/personal',[ConfiguracionController::class, 'personal'])->middleware('auth')->name('configuracion.personal');
-Route::post('/personal/store',[ConfiguracionController::class, 'personalstore'])->middleware('auth')->name('configuracion.personal.store');
-Route::get('/categorias',[ConfiguracionController::class, 'categorias'])->middleware('auth')->name('configuracion.categorias');
-Route::post('/categorias/store',[ConfiguracionController::class, 'categoriasstore'])->middleware('auth')->name('configuracion.categorias.store');
+Route::get('configuracion/departamentos',[ConfiguracionController::class, 'departamentos'])->middleware('auth')->name('configuracion.departamentos');
+Route::post('configuracion/departamentos/store',[ConfiguracionController::class, 'departamentosstore'])->middleware('auth')->name('configuracion.departamentos.store');
+Route::get('configuracion/personal',[ConfiguracionController::class, 'personal'])->middleware('auth')->name('configuracion.personal');
+Route::post('configuracion/personal/store',[ConfiguracionController::class, 'personalstore'])->middleware('auth')->name('configuracion.personal.store');
+Route::get('configuracion/categorias',[ConfiguracionController::class, 'categorias'])->middleware('auth')->name('configuracion.categorias');
+Route::post('configuracion/categorias/store',[ConfiguracionController::class, 'categoriasstore'])->middleware('auth')->name('configuracion.categorias.store');
 
 Route::get('/login', [loginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

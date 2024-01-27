@@ -17,6 +17,12 @@ class Index extends Component
     public $perPage = 10;
     protected $paginationTheme = 'bootstrap';
 
+    public $producto;
+
+    public $nombre;
+
+    public $descripcion;
+
 
     public function sortBy($field)
     {
@@ -28,6 +34,42 @@ class Index extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function abrirModal($producto)
+    {
+
+        $this->producto = $producto;
+        $this->nombre = $producto['nombre'];
+        $this->descripcion = $producto['descripcion'];
+    }
+
+    public function borrar()
+    {
+        categorias::where('id', $this->producto['id'])->delete();
+        $this->resetPage();
+    }
+
+    public function editar()
+    {
+
+        // if($this->fotonueva->hasFile('foto')){
+        //     $foto = $this->fotonueva->file('foto');
+        //     $carpeta = 'images/perfil/';
+        //     $nombre = time() .  '-' . $foto->getClientOriginalName();
+        //     $carga = $this->fotonueva->file('foto')->move($carpeta, $nombre);
+        //     $foto = $carpeta . $nombre;
+        // }else{
+        //     //ya veremos si se acomoda esto
+        // }
+
+
+        categorias::where('id', $this->producto['id'])
+        ->update([
+            'nombre' => strtoupper($this->nombre),
+            'descripcion' => $this->descripcion
+        ]);
+
     }
 
     public function updateSearch()

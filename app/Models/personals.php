@@ -12,6 +12,7 @@ class personals extends Model
     protected $fillable = [
         'nombre',
         'id_departamento',
+        'nombre_departamento',
         'foto'
         ];
 

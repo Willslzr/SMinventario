@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('id_departamento');
+            $table->string('nombre_departamento');
             $table->string('foto')->nullable();
             $table->timestamps();
         });

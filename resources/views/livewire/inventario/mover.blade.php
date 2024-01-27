@@ -1,5 +1,4 @@
 <div>
-
     <div class="col-sm-12 aling-center">
         <form action="{{route('inventario.savemove')}}" method="POST">
             @csrf

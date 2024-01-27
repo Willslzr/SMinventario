@@ -83,5 +83,3 @@
 </section>
 
 @endsection
-@push('custom-scripts')
-@endpush

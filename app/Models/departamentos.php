@@ -12,4 +12,9 @@ class departamentos extends Model
         'nombre',
         'descripcion',
         ];
+
+        public function personal()
+    {
+        return $this->hasMany('App\Models\personals', 'id_departamento');
+    }
 }

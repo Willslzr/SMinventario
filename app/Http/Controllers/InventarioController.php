@@ -109,6 +109,8 @@ class InventarioController extends Controller
     }
 
     public function asignarequipo(request $request){
+
+        dd('pendiente arreglar no esta guardando bien');
         $empleado = personals::where('id', $request->input('empleado'))->first();
         $articulo = articulos::where('id', $request->input('articulo'))->first();
         $categoria = categorias::where('id', $articulo->categoria->id)->first();

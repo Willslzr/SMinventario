@@ -11,7 +11,7 @@
 <section>
     <x-card>
         <x-slot name="header">
-                <h4 class="text-white text-capitalize ps-3">Productos</h4>
+                <h4 class="text-white text-capitalize ps-3">Departamentos</h4>
         </x-slot>
         <x-slot name="body">
             <div class="container">
@@ -67,5 +67,3 @@
 </section>
 
 @endsection
-@push('custom-scripts')
-@endpush

@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
             $table->integer('id_categoria');
+            $table->string('nombre_categoria');
             $table->integer('id_ubicacion');
+            $table->string('nombre_ubicacion');
             $table->integer('id_encargado');
+            $table->string('nombre_encargado');
             $table->string('numero_de_serie')->nullable();
             $table->string('codigoqr')->nullable();
             $table->timestamps();

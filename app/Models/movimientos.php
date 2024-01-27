@@ -10,10 +10,11 @@ class movimientos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_dep_origen',
-        'id_dep_destino',
-        'id_usuario_origen',
-        'id_usuario_destino',
+        'departamento_origen',
+        'departamento_destino',
+        'usuario_origen',
+        'usuario_destino',
+        'nombre_articulo',
         'id_articulo'
     ];
 

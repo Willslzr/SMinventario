@@ -16,9 +16,18 @@ class Index extends Component
     protected $queryString = ['search'];
     public $perPage = 10;
     protected $paginationTheme = 'bootstrap';
+    public $departamento;
+    public $nombre;
 
-    public $area;
+    public $text;
 
+// En el componente Livewire
+    protected $listeners = ['borrarDepartamento']; // Nombre correcto del evento
+
+    public function borrarDepartamento($id)
+    {
+        dd($id, 'se ejecuto borrar departamento');
+    }
     public function sortBy($field)
     {
 
@@ -33,9 +42,29 @@ class Index extends Component
 
     public function abrirModal($departamento)
     {
-        $this->area = $departamento;  // Asigna el ID del departamento a la propiedad
-        dd($this->area);
+        $this->departamento = $departamento['id'];
+        $this->nombre = $departamento['nombre'];
+        $this->text = $departamento['descripcion'];
+
     }
+
+    public function borrar()
+    {
+        departamentos::where('id', $this->departamento)->delete();
+        $this->resetPage();
+    }
+
+    public function editar()
+    {
+        departamentos::where('id', $this->departamento)
+        ->update([
+            'nombre' => strtoupper($this->nombre),
+            'descripcion' => $this->text
+        ]);
+
+        $this->resetPage();
+    }
+
 
 
     public function updateSearch()
@@ -56,7 +85,6 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('nombre', $this->sortDirection)
             ->paginate($this->perPage),
-            'area' => $this->area,
         ]);
     }
 }
