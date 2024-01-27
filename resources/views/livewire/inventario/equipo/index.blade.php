@@ -150,4 +150,34 @@
         </div>
     </div>
 
+    <div wire:ignore.self class="modal fade" id="borrar" tabindex="-1" role="dialog" aria-labelledby="borrarLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="borrarLabel">Borrar</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                    <div class="modal-body">
+                    <h5 id="borrarLabel">Seguro que quiere borrar este equipo del inventario?</h5>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 mb-2 mx-3 mb-sm-0">
+                            <label for="identificador">ID</label>
+                            <input type="text" class="form-control form-control-user" name="identificador" identificador="identificador" wire:model="identificador" readonly>
+                        </div>
+                        <div class="col-sm-4 mb-2 px-0 m-0 mb-sm-0">
+                            <label for="Nombre">Equipo</label>
+                            <input type="text" class="form-control form-control-user" name="nombre" id="nombre" wire:model="nombre" readonly>
+                        </div>
+                        <div class="col-sm-4 mb-2 mx-3 mb-sm-0">
+                            <label for="numeroSerie">N° de Serie</label>
+                            <input type="text" class="form-control form-control-user" name="numeroSerie" id="numeroSerie" wire:model="numeroSerie" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button><button class="btn btn-primary" type="button" id="borrar-equipo" data-dismiss="modal" wire:click="borrar">Borrar</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
 </div>

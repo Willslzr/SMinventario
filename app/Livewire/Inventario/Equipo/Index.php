@@ -83,6 +83,18 @@ class Index extends Component
 
     }
 
+    public function borrar()
+    {
+        $categoria = categorias::where('id', $this->articulo['id_categoria'])->first();
+        $totalRestante = $categoria->cantidad_inv - 1;
+        $categoria->update([
+            'cantidad_inv' => $totalRestante
+        ]);
+
+        articulos::where('id', $this->identificador)->delete();
+        $this->resetPage();
+    }
+
 
     public function sortBy($field)
     {
