@@ -5,6 +5,8 @@ namespace App\Livewire\Inventario\Equipo;
 use Livewire\Component;
 use App\Models\articulos;
 use App\Models\personals;
+use App\Models\categorias;
+use App\Models\movimientos;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -18,27 +20,66 @@ class Index extends Component
     protected $queryString = ['search'];
     public $perPage = 10;
     public $producto;
-    public $empleados;
-
     public $articulo;
 
-    public $empleado;
+    public $identificador;
+    public $nombre;
 
-    public $imagenReferencia;
+    public $numeroSerie;
+    public $select;
+
+    public $empleados;
 
     protected $paginationTheme = 'bootstrap';
 
-    public function mount(){
-        $this->empleados = personals::all()->toArray();
-        // dd($this->empleados);
-        $this->empleado = $this->empleados[0]['nombre'];
-        $this->imagenReferencia = $this->empleados[0]['foto'];
-    }
 
+    public function mount(){
+
+        $this->empleados = personals::all();
+        $this->select = $this->empleados->first()->id;
+
+    }
     public function abrirModal($articulo)
     {
 
-        $this->articulo = $articulo; // Asigna el valor del artículo ID a la propiedad $articuloId
+        $this->articulo = $articulo;
+        $this->identificador = $articulo['id'];
+        $this->nombre = $articulo['nombre_categoria'];
+        $this->numeroSerie = $articulo['numero_de_serie'];
+
+    }
+
+    public function asignar()
+    {
+
+        $empleado = personals::where('id', $this->select)->first();
+        $articulo = articulos::where('id', $this->identificador)->first();
+        $categoria = categorias::where('id', $this->articulo['id_categoria'])->first();
+        $totalRestante = $categoria->cantidad_inv - 1;
+        $categoria->update([
+            'cantidad_inv' => $totalRestante
+        ]);
+
+        $articulo->update([
+                    'id_ubicacion' => $empleado->id_departamento,
+                    'nombre_ubicacion' => $empleado->nombre_departamento,
+                    'id_encargado' => $empleado->id,
+                    'nombre_encargado' => $empleado->nombre,
+                    'numero_de_serie' => $articulo->numero_de_serie,
+                ]);
+
+
+        movimientos::create([
+            'departamento_origen' => 'INVENTARIO',
+            'departamento_destino' => $empleado->nombre_departamento,
+            'usuario_origen' => 'almacen',
+            'usuario_destino' => $empleado->nombre,
+            'nombre_articulo' => $categoria->nombre,
+            'id_articulo' => $articulo->id,
+        ]);
+
+
+        return redirect()->route('inventario.index');
 
     }
 
@@ -68,11 +109,11 @@ class Index extends Component
         return view('livewire.inventario.equipo.index', [
             'articulos' => articulos::query()
             ->where('id_categoria', $this->producto->id)
+            ->where('nombre_encargado', 'almacen')
             ->where('numero_de_serie', 'like', '%'.strtoupper($this->search).'%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('id', $this->sortDirection)
             ->paginate($this->perPage),
-            'empleados' => $this->empleados
         ]);
     }
 }

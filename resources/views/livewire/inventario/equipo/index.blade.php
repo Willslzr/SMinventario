@@ -61,19 +61,19 @@
 
             <td style="text-align: center; vertical-align: middle;">
                 <div class="btn-group">
-                    <a href="#" class="btn btn-success btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
+                    <button class="btn btn-success btn-circle btn-sm" type="button" data-toggle="modal" data-target="#ver" wire:click="abrirModal({{ $articulo }})">
                         <i class="fas fa-eye"></i>
-                    </a>
+                    </button>
                     <a href="#" target="__blank" class="btn btn-info btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Codigo QR">
                         <i class="fas fa-qrcode"></i>
                     </a>
-                    <button class="btn btn-warning btn-circle btn-sm" type="button" data-toggle="modal" data-target="#asignar" wire:click="abrirModal({{ $articulo->id }})">
+                    <button class="btn btn-warning btn-circle btn-sm" type="button" data-toggle="modal" data-target="#asignar" wire:click="abrirModal({{ $articulo }})">
                         <i class="fas fa-upload"></i>
                     </button>
 
-                    <a href="#" class="btn btn-danger btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="borrar">
+                    <button class="btn btn-danger btn-circle btn-sm" type="button" data-toggle="modal" data-target="#borrar" wire:click="abrirModal({{ $articulo }})">
                         <i class="fas fa-trash"></i>
-                    </a>
+                    </button>
                 </div>
             </td>
             </tr>
@@ -84,36 +84,70 @@
 
 {{ $articulos->links() }}
 
-</div>
-
-@section('modal')
-<!-- Modal -->
-<div class="modal fade" id="asignar" tabindex="-1" role="dialog" aria-labelledby="asignarLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="asignarLabel">Asigna el equipo a:</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <form action="{{route('inventario.asignarequipo')}}" method="post">
-                @csrf
-                <div class="modal-body">
-                    <select class="form-control" name="empleado" wire:model.live="empleado">
-                        @if($empleados){
-                            @foreach($empleados as $item)
-                            <option value="{{$item['id']}}">{{$item['nombre']}}</option>
-                            @endforeach
-                        }
-                        @else
-                        <option value="0">Sin registros</option>
-                        @endif
-                    </select>
+    <div wire:ignore.self class="modal fade" id="ver" tabindex="-1" role="dialog" aria-labelledby="verLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-gradient-light">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="verLabel"></h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
-                <input type="hidden" name="articulo" wire:model="articulo" value="{{$articulo->id}}">
-
-                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button><button class="btn btn-primary" type="submit">Asignar</button></div>
-            </form>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" name="nombre" id="nombre" wire:model="nombre" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control form-control-user" name="descripcion" id="descripcion" wire:model="descripcion" style="height: auto" rows="5" readonly></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div wire:ignore.self class="modal fade" id="asignar" tabindex="-1" role="dialog" aria-labelledby="asignarLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-gradient-light">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="asignarLabel">Asignar</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-2 mb-2 mx-0 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" name="identificador" identificador="identificador" wire:model="identificador" readonly>
+                        </div>
+                        <div class="col-sm-5 mb-2 mx-0 px-0 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" name="nombre" id="nombre" wire:model="nombre" readonly>
+                        </div>
+                        <div class="col-sm-5 mb-2 mx-0 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" name="numeroSerie" id="numeroSerie" wire:model="numeroSerie" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 mb-1 mb-sm-0">
+                            <select class="form-control" name="select" wire:model="select">
+                                @if($empleados){
+                                    @foreach($empleados as $empleado)
+                                    <option value="{{$empleado->id}}">{{$empleado->nombre}}</option>
+                                    @endforeach
+                                }
+                                @else
+                                <option value="0">Sin registros</option>
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-primary" type="button" id="asignar-departamento" data-dismiss="modal" wire:click="asignar">Asignar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-@endsection

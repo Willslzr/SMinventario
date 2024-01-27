@@ -17,6 +17,11 @@ class index extends Component
     public $sortDirection = 'asc';
     protected $queryString = ['search'];
     public $perPage = 10;
+
+    public $nombre;
+
+    public $descripcion;
+
     protected $paginationTheme = 'bootstrap';
 
 
@@ -30,6 +35,12 @@ class index extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function abrirModal($producto)
+    {
+        $this->nombre = $producto['nombre'];
+        $this->descripcion = $producto['descripcion'];
     }
 
     public function updateSearch()

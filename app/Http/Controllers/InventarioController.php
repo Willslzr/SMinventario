@@ -21,7 +21,6 @@ class InventarioController extends Controller
     public function store(request $request){
 
         $categoria = categorias::where('id', $request->input('articulo'))->first();
-
         if($categoria->consumible == false){
             $cantidad = 1;
         }else{
@@ -35,15 +34,21 @@ class InventarioController extends Controller
             for($i = 1; $i <= $request->input('cantidad'); $i++){
                 articulos::create([
                     'id_categoria' => $categoria->id,
+                    'nombre_categoria' => $categoria->nombre,
                     'id_ubicacion' => 1,
+                    'nombre_ubicacion' => 'INVENTARIO',
                     'id_encargado' => 1,
+                    'nombre_encargado' => 'almacen',
                 ]);
             }
         }else{
             articulos::create([
                 'id_categoria' => $categoria->id,
+                'nombre_categoria' => $categoria->nombre,
                 'id_ubicacion' => 1,
+                'nombre_ubicacion' => 'INVENTARIO',
                 'id_encargado' => 1,
+                'nombre_encargado' => 'almacen',
                 'numero_de_serie' => $request->input('numeroserie'),
                 // 'codigoqr' => $codigo,
             ]);
