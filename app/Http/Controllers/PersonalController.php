@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\articulos;
+use App\Models\movimientos;
 use App\Models\personals;
 use App\Models\categorias;
 use Illuminate\Http\Request;
@@ -33,7 +34,22 @@ class PersonalController extends Controller
 
         $materiales = articulos::where('numero_de_serie', null)
         ->where('id_encargado', $empleado->id)
+        ->orderBy('updated_at', 'desc')
+        ->take(30)
         ->get();
+
+        $historial = movimientos::where('usuario_origen', $empleado->nombre)
+        ->orWhere('usuario_destino', $empleado->nombre)
+        ->orderBy('created_at', 'desc')
+        ->take(30)
+        ->get();
+
+        // 'departamento_origen',
+        // 'departamento_destino',
+        // 'usuario_origen',
+        // 'usuario_destino',
+        // 'nombre_articulo',
+        // 'id_articulo'
 
 
     //     'nombre',
@@ -51,6 +67,6 @@ class PersonalController extends Controller
         // 'codigoqr'
 
 
-        return view ('personal.show', compact('empleado', 'equipos', 'articulos', 'materiales'));
+        return view ('personal.show', compact('empleado', 'equipos', 'articulos', 'materiales', 'historial'));
     }
 }

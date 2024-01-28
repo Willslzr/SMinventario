@@ -76,7 +76,6 @@
                                 <tr>
                                 <th>Nombre</th>
                                 <th>Recibido</th>
-                                <th>acciones</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-light">
@@ -84,14 +83,6 @@
                                 <tr class="text-center">
                                 <td>{{$articulo->categoria->nombre}}</td>
                                 <td>{{$articulo->updated_at}}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-info" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
-                                        <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Asignar">
-                                            <i class="fas fa-undo"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -101,22 +92,23 @@
                             <table class="table table-striped table-hover align-items-center mb-2 rounded table-sm">
                             <thead class="bg-gradient-primary text-center text-uppercase text-white font-weight-bolder">
                                 <tr>
-                                <th>Columna 1</th>
-                                <th>Columna 2</th>
-                                <th>Columna 3</th>
+                                <th>ID</th>
+                                <th>Equipo/Material</th>
+                                <th>Origen</th>
+                                <th>Destino</th>
+                                <th>Fecha</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-light">
-                                <tr>
-                                <td>Valor 1</td>
-                                <td>Valor 2</td>
-                                <td>Valor 3</td>
+                                @foreach($historial as $ficha)
+                                <tr class="text-center">
+                                <td>{{$ficha->id_articulo}}</td>
+                                <td>{{$ficha->nombre_articulo}}</td>
+                                <td>{{$ficha->usuario_origen}}</td>
+                                <td>{{$ficha->usuario_destino}}</td>
+                                <td>{{$ficha->created_at}}</td>
                                 </tr>
-                                <tr>
-                                <td>Valor 4</td>
-                                <td>Valor 5</td>
-                                <td>Valor 6</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             </table>
                         </div>
