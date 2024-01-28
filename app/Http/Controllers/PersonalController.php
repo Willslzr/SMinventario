@@ -27,8 +27,8 @@ class PersonalController extends Controller
 
         $articulos = articulos::where('numero_de_serie', null)
         ->where('id_encargado', $empleado->id)
-        ->groupBy('id_categoria')
-        ->selectRaw('id_categoria, count(*) as cantidad')
+        ->groupBy('nombre_categoria')
+        ->selectRaw('nombre_categoria, count(*) as cantidad')
         ->get();
 
         $materiales = articulos::where('numero_de_serie', null)

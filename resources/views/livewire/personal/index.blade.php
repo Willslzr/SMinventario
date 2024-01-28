@@ -53,7 +53,7 @@
             </td>
 
             <td style="text-align: center; vertical-align: middle;">
-                <h6 class="mb-0 text-sm">{{ $item->departamento->nombre ?? 'Sin departamento' }}</h6>
+                <h6 class="mb-0 text-sm">{{ $item->nombre_departamento ?? 'Sin departamento' }}</h6>
             </td>
 
             <td style="text-align: center; vertical-align: middle;">

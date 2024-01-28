@@ -71,7 +71,7 @@
             </td>
             <td style="text-align: center; vertical-align: middle;">
                 <div class="btn-group">
-                    <button class="btn btn-warning btn-circle btn-sm" type="button" data-toggle="modal" data-target="#ver" wire:click="abrirModal({{ $producto }})">
+                    <button class="btn btn-primary btn-circle btn-sm" type="button" data-toggle="modal" data-target="#ver" wire:click="abrirModal({{ $producto }})">
                         <i class="fas fa-eye"></i>
                     </button>
 

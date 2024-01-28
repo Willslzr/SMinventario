@@ -18,7 +18,7 @@
                                 <label for="Nombre"><h3>{{$empleado->nombre}}</h3></label>
                             </div>
                             <div class="text-center col-sm-6">
-                                <label for="Departamento">{{$empleado->departamento->nombre}}</label>
+                                <label for="Departamento">{{$empleado->departamento}}</label>
                             </div>
                         </div>
                     </div>
@@ -43,6 +43,7 @@
                             <table class="table table-striped table-hover align-items-center mb-2 rounded table-sm">
                             <thead class="bg-gradient-primary text-center text-uppercase text-white font-weight-bolder">
                                 <tr>
+                                <th>ID</th>
                                 <th>Nombre</th>
                                 <th>N° Serial</th>
                                 <th>Recibido</th>
@@ -53,20 +54,15 @@
                             <tbody class="bg-light">
                                 @foreach ($equipos as $item)
 
-
                                 <tr class="text-center">
-                                    <td>{{$item->categoria->nombre}}</td>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->nombre_categoria}}</td>
                                     <td>{{$item->numero_de_serie}}</td>
                                     <td>{{$item->updated_at}}</td>
                                     <td>{{$item->codigoqr}}</td>
                                     <td style="text-align: center; vertical-align: middle;">
                                     <div class="btn-group">
-                                        <a href="#" class="btn btn-sm btn-info" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Asignar">
-                                            <i class="fas fa-undo"></i>
-                                        </a>
+                                        @livewire('components.td', ['equipo' => $item, 'empleado' => $empleado, 'nombre' => $item->nombre_categoria])
                                     </div>
                                     </td>
                                 </tr>
