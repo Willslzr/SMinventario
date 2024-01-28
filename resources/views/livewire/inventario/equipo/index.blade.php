@@ -49,14 +49,23 @@
             <td style="text-align: center; vertical-align: middle;">
                 <h6 class="mb-0 text-sm">{{ $articulo->id }}</h6>
             </td>
-            <td class="text-center">
+            <td class="text-center" style="text-align: center; vertical-align: middle;">
                 <h6 class="mb-0 text-sm">{{ $articulo->numero_de_serie }}</h6>
             </td>
-            <td class="text-center">
+            <td class="text-center" style="text-align: center; vertical-align: middle;">
                 <h6 class="mb-0 text-sm">{{ $articulo->created_at }}</h6>
             </td>
             <td style="text-align: center; vertical-align: middle;">
-                <h6 class="mb-0 text-sm">{{ asset('$articulo->codigoqr')}}</h6>
+                {{ QrCode::size(150)
+                    ->merge(public_path('/images/santiagologo.svg'), .3, true)
+                    ->generate(
+                        'ID: ' . $articulo->id . PHP_EOL .
+                        'Articulo: ' . $articulo->nombre_categoria . PHP_EOL .
+                        'Ubicacion: ' . $articulo->nombre_ubicacion . PHP_EOL .
+                        'Asignado a: ' . $articulo->nombre_encargado . PHP_EOL .
+                        'Numero de serie: ' . $articulo->numero_de_serie . PHP_EOL .
+                        'Asignado el: ' . $articulo->updated_at
+                    ) }}
             </td>
 
             <td style="text-align: center; vertical-align: middle;">
