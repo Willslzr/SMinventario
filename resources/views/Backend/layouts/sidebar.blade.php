@@ -27,7 +27,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('personal.index')}}">
-                    <i class="fas fa-wb fa-solid fa-table"></i>
+                    <i class="fas fa-wb fa-solid fa-user"></i>
                     <span>Personal</span></a>
             </li>
 

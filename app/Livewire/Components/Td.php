@@ -36,6 +36,8 @@ class Td extends Component
 
         categorias::where('id', $this->equipo->id_categoria)
         ->increment('cantidad_inv');
+
+        return to_route('personal.index')->with('status', 'Equipo regresado exitosamente');
     }
 
     public function render()
