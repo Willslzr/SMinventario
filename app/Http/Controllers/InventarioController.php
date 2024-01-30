@@ -49,7 +49,7 @@ class InventarioController extends Controller
                 'nombre_ubicacion' => 'INVENTARIO',
                 'id_encargado' => 1,
                 'nombre_encargado' => 'almacen',
-                'numero_de_serie' => $request->input('numeroserie'),
+                'numero_de_serie' => $request->input('numeroserie') ?? 1000,
                 // 'codigoqr' => $codigo,
             ]);
         }

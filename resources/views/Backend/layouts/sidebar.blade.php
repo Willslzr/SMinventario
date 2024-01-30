@@ -12,14 +12,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('dashboard')}}">
-                    <i class="fas fa-wb fa-solid fa-chart-line"></i>
-                    <span>Pagina Principal</span></a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" href="{{route('inventario.index')}}">
                     <i class="fas fa-wb fa-solid fa-table"></i>
                     <span>Inventario</span></a>
@@ -30,20 +23,6 @@
                     <i class="fas fa-wb fa-solid fa-user"></i>
                     <span>Personal</span></a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-spell-check"></i>
-                    <span>Historial de movimientos</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -66,15 +45,41 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Complementos
+                Reportes
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('test')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Reporte</span></a>
+                <a class="nav-link" target="_blank" href="{{route('reporte.general')}}">
+                    <i class="fas fa-fw fa-tv"></i>
+                    <span>Reporte Equipos</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="{{route('reporte.inventario')}}">
+                    <i class="fas fa-fw fa-pen"></i>
+                    <span>Reporte Materiales</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="{{route('reporte.movimientos')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reporte Movimientos</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="{{route('reporte.reportearticulosrecibidos')}}">
+                    <i class="fas fa-fw fa-truck-moving"></i>
+                    <span>Reporte Recibidos</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Salir
+            </div>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -94,5 +99,8 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+
+
         </ul>
-        <!-- End of Sidebar -->
+
+

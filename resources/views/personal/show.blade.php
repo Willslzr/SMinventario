@@ -18,7 +18,7 @@
                                 <label for="Nombre"><h3>{{$empleado->nombre}}</h3></label>
                             </div>
                             <div class="text-center col-sm-6">
-                                <label for="Departamento">{{$empleado->departamento}}</label>
+                                <label for="Departamento">{{$empleado->nombre_departamento}}</label>
                             </div>
                         </div>
                     </div>
@@ -40,6 +40,10 @@
                 <hr>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-equipos" role="tabpanel" aria-labelledby="pills-equipos-tab">
+                            <div class="ms-auto">
+                                <a href="{{ route('dashboard.reporte.equipos', $empleado->id) }}" target="_blank" class="btn btn-sm bg-gradient-primary mb-0 text-white"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>Generar Reporte de equipos</a>
+                            </div>
                             <table class="table table-striped table-hover align-items-center mb-2 rounded table-sm">
                             <thead class="bg-gradient-primary text-center text-uppercase text-white font-weight-bolder">
                                 <tr>
@@ -55,15 +59,34 @@
                                 @foreach ($equipos as $item)
 
                                 <tr class="text-center">
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->nombre_categoria}}</td>
-                                    <td>{{$item->numero_de_serie}}</td>
-                                    <td>{{$item->updated_at}}</td>
-                                    <td>{{$item->codigoqr}}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{$item->id}}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{$item->nombre_categoria}}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{$item->numero_de_serie}}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{$item->updated_at}}</td>
+                                    <td>
+                                        {{-- @dd($item) --}}
+                                        {{ QrCode::size(150)
+                                            ->format('svg')
+                                            ->merge(public_path('images/santiagologo.svg'), .3, true)
+                                            // ->format('png')
+                                            // ->merge('/public/images/santiagologo.png')
+                                            // ->errorCorrection('M')
+                                            ->generate(
+                                                'ID: ' . $item->id . PHP_EOL .
+                                                'Articulo: ' . $item->nombre_categoria . PHP_EOL .
+                                                'Ubicacion: ' . $item->nombre_ubicacion . PHP_EOL .
+                                                'Asignado a: ' . $item->nombre_encargado . PHP_EOL .
+                                                'Numero de serie: ' . $item->numero_de_serie . PHP_EOL .
+                                                'Asignado el: ' . $item->updated_at
+                                            ) }}
+                                    </td>
                                     <td style="text-align: center; vertical-align: middle;">
-                                    <div class="btn-group">
+                                        <div class="btn-group">
+                                            <a href="{{ route('dashboard.codigoqr', $item->id) }}" target="_blank" class="btn btn-success mx-1 btn-sm" type="button">
+                                                <i class="fas fa-qrcode"></i>
+                                            </a>
                                         @livewire('components.td', ['equipo' => $item, 'empleado' => $empleado, 'nombre' => $item->nombre_categoria])
-                                    </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -71,6 +94,10 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="pills-utiles" role="tabpanel" aria-labelledby="pills-utiles-tab">
+                            <div class="ms-auto">
+                                <a href="{{ route('dashboard.reporte.materiales', $empleado->id)}}" target="_blank" class="btn btn-sm bg-gradient-primary mb-0 text-white"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>Generar Reporte de materiales</a>
+                            </div>
                             <table class="table table-striped table-hover align-items-center mb-2 rounded table-sm">
                             <thead class="bg-gradient-primary text-center text-uppercase text-white font-weight-bolder">
                                 <tr>
@@ -89,6 +116,10 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="pills-historial" role="tabpanel" aria-labelledby="pills-historial-tab">
+                            <div class="ms-auto">
+                                <a href="{{ route('dashboard.reporte.historial', $empleado->id) }}" target="_blank" class="btn btn-sm bg-gradient-primary mb-0 text-white"><i
+                                    class="fas fa-download fa-sm text-white-50"></i>Generar Reporte de historial</a>
+                            </div>
                             <table class="table table-striped table-hover align-items-center mb-2 rounded table-sm">
                             <thead class="bg-gradient-primary text-center text-uppercase text-white font-weight-bolder">
                                 <tr>

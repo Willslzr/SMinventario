@@ -40,13 +40,6 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Earnings (Annual)</div>
-                                    <div class="bg-white p-2">
-                                        {{ QrCode::size(150)
-                                            ->format('svg')
-
-                                            ->margin(10)
-                                            ->generate($textoTabla) }}
-                                    </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                             </div>
                             <div class="col-auto">

@@ -1,9 +1,16 @@
 @include('Backend.layouts.common-head')
 
-<section>
+<style>
+body {
+        background-image: url('/images/santiagologo.svg');
+        background-size: cover;
+
+}
+</style>
+<section class=body>
     <div class="container my-5">
         <div class="d-flex flex-column">
-            <div class="col-xl-4 col-lg-5 col-md-7 border box-shadow align-self-center">
+            <div class="col-xl-4 col-lg-5 col-md-7 border rounded bg-gradient-light box-shadow align-self-center">
                 <div class="card-header">
                     <h4 class="font-weight-bolder">Iniciar Sesion</h4>
                     <p class="mb-0">Ingresa tus datos y contraseña</p>
@@ -44,6 +51,3 @@
 </section>
 
 @include('Backend.layouts.common-end')
-@push('custom-scripts')
-@endpush
-

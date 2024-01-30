@@ -59,6 +59,7 @@ class index extends Component
             'categorias' => categorias::query()
             ->where('cantidad_inv', '<>', 0)
             ->where('nombre', 'like', '%'.strtoupper($this->search).'%')
+            ->where('id', 'like', '%'.strtoupper($this->search).'%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->orderBy('id', $this->sortDirection)
             ->paginate($this->perPage)

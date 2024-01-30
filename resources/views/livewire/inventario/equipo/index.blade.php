@@ -14,9 +14,6 @@
         <div class="" wire:loading>
             <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
         </div>
-        <div class="ms-auto">
-                <a href="#" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo</a>
-        </div>
     </div>
 <x-table class="table-bordered">
     <x-slot name="thead">
@@ -54,10 +51,12 @@
             </td>
             <td class="text-center" style="text-align: center; vertical-align: middle;">
                 <h6 class="mb-0 text-sm">{{ $articulo->created_at }}</h6>
+
             </td>
             <td style="text-align: center; vertical-align: middle;">
                 {{ QrCode::size(150)
-                    ->merge(public_path('/images/santiagologo.svg'), .3, true)
+                    ->format('svg')
+                    ->merge(public_path('images/santiagologo.svg'), .3, true)
                     ->generate(
                         'ID: ' . $articulo->id . PHP_EOL .
                         'Articulo: ' . $articulo->nombre_categoria . PHP_EOL .
@@ -70,10 +69,7 @@
 
             <td style="text-align: center; vertical-align: middle;">
                 <div class="btn-group">
-                    <button class="btn btn-success btn-circle btn-sm" type="button" data-toggle="modal" data-target="#ver" wire:click="abrirModal({{ $articulo }})">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                    <a href="#" target="__blank" class="btn btn-info btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Codigo QR">
+                    <a href="{{ route('dashboard.codigoqr', $articulo->id) }}" target="_blank" class="btn btn-info btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Codigo QR">
                         <i class="fas fa-qrcode"></i>
                     </a>
                     <button class="btn btn-warning btn-circle btn-sm" type="button" data-toggle="modal" data-target="#asignar" wire:click="abrirModal({{ $articulo }})">

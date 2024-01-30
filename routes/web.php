@@ -21,6 +21,14 @@ use App\Http\Controllers\ConfiguracionController;
 */
 
 Route::get('/inicio', [DashboardController::class, 'main'])->middleware('auth')->name('dashboard');
+Route::get('/codigoqr/{id}', [DashboardController::class, 'show'])->middleware('auth')->name('dashboard.codigoqr');
+Route::get('/reporte/equipos/{id}', [DashboardController::class, 'reporteEquipos'])->middleware('auth')->name('dashboard.reporte.equipos');
+Route::get('/reporte/materiales/{id}', [DashboardController::class, 'reportemateriales'])->middleware('auth')->name('dashboard.reporte.materiales');
+Route::get('/reporte/historial/{id}', [DashboardController::class, 'reportehistorial'])->middleware('auth')->name('dashboard.reporte.historial');
+Route::get('/reporte/general', [DashboardController::class, 'reportegeneral'])->middleware('auth')->name('reporte.general');
+Route::get('/reporte/movimientos', [DashboardController::class, 'reportemovimientos'])->middleware('auth')->name('reporte.movimientos');
+Route::get('/reporte/materiales', [DashboardController::class, 'reportearticulos'])->middleware('auth')->name('reporte.inventario');
+Route::get('/reporte/recibidos', [DashboardController::class, 'reportearticulosrecibidos'])->middleware('auth')->name('reporte.reportearticulosrecibidos');
 
 Route::get('/personal/index', [PersonalController::class, 'index'])->middleware('auth')->name('personal.index');
 Route::get('/personal/show/{id}', [PersonalController::class, 'show'])->middleware('auth')->name('personal.show');

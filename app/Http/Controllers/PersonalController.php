@@ -44,29 +44,6 @@ class PersonalController extends Controller
         ->take(30)
         ->get();
 
-        // 'departamento_origen',
-        // 'departamento_destino',
-        // 'usuario_origen',
-        // 'usuario_destino',
-        // 'nombre_articulo',
-        // 'id_articulo'
-
-
-    //     'nombre',
-    // 'descripcion',
-    // 'consumible',
-    // 'imagen_referencia',
-    // 'cantidad_inv'
-
-        // $articulos = articulos::where('id_encargado', );
-
-        // 'id_categoria',
-        // 'id_ubicacion',
-        // 'id_encargado',
-        // 'numero_de_serie',
-        // 'codigoqr'
-
-
         return view ('personal.show', compact('empleado', 'equipos', 'articulos', 'materiales', 'historial'));
     }
 }

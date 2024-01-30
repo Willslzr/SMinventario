@@ -15,13 +15,13 @@
             <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
         </div>
         <div class="ms-auto">
-                <a href="{{route('inventario.create')}}" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo</a>
+                <a href="{{route('inventario.create')}}" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo<i class="fas fa-fw fa-truck-loading ml-2"></i></a>
         </div>
     </div>
 <x-table>
     <x-slot name="thead">
         <tr>
-        {{-- <th wire:click="sortBy('id')">id
+        <th wire:click="sortBy('id')">ID
             <span class="sort-arrow">
                 @if ($sortField === 'id')
                     @if ($sortDirection === 'asc')
@@ -31,7 +31,7 @@
                     @endif
                 @endif
             </span>
-        </th> --}}
+        </th>
         <th wire:click="sortBy('nombre')">Nombre
             <span class="sort-arrow">
                 @if ($sortField === 'nombre')
@@ -57,14 +57,14 @@
         @else
         @foreach ($categorias as $producto)
             <tr>
-            {{-- <td>
-                <h6 class="mb-0 text-sm">{{ $producto }}</h6>
-            </td> --}}
+            <td style="text-align: center; vertical-align: middle;">
+                <h6 class="mb-0 text-sm">{{ $producto->id }}</h6>
+            </td>
             <td style="text-align: center; vertical-align: middle;">
                 <h6 class="mb-0 text-sm" >{{$producto->nombre}}</h6>
             </td>
             <td class="text-center">
-                <img src="{{$producto->imagen_referencia}}" alt="{{$producto->nombre}}" class="img-fluid img-thumbnail" width="100">
+                <img src="{{$producto->imagen_referencia}}" alt="{{$producto->nombre}}" class="img-fluid img-thumbnail" width="50">
             </td>
             <td style="text-align: center; vertical-align: middle;">
                 <h6 class="mb-0 text-sm">{{$producto->cantidad_inv}}</h6>

@@ -15,7 +15,7 @@
             <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
         </div>
         <div class="ms-auto">
-                <a href="#" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo</a>
+                <a href="{{route('configuracion.personal')}}" class="btn btn-sm bg-gradient-primary mb-0 text-white">Nuevo <i class="fas fa-fw fa-user-plus"></i></a>
         </div>
     </div>
 <x-table class="table-bordered">
@@ -49,7 +49,7 @@
                 <h6 class="mb-0 text-sm">{{ $item->nombre }}</h6>
             </td>
             <td class="text-center">
-                <img src="{{asset($item->foto)}}" alt="{{$item->nombre}}" class="img-fluid img-thumbnail" width="100">
+                <img src="{{asset($item->foto)}}" alt="{{$item->nombre}}" class="img-fluid img-thumbnail" width="50">
             </td>
 
             <td style="text-align: center; vertical-align: middle;">
@@ -60,12 +60,6 @@
                 <div class="btn-group">
                     <a href="{{route('personal.show', $item->id)}}" class="btn btn-success btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Ver información">
                         <i class="fas fa-eye"></i>
-                    </a>
-                    <a href="#" class="btn btn-warning btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="borrar">
-                        <i class="fas fa-trash"></i>
                     </a>
                 </div>
             </td>

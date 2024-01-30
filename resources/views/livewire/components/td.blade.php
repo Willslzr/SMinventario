@@ -1,5 +1,5 @@
 <div>
-    <button class="btn btn-danger btn-circle btn-sm" type="button" data-toggle="modal" data-target="#regresar">
+    <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#regresar">
         <i class="fas fa-undo"></i>
     </button>
     <div wire:ignore.self class="modal fade" id="regresar" tabindex="-1" role="dialog" aria-labelledby="regresarLabel" aria-hidden="true">
