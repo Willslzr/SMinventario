@@ -10,6 +10,8 @@ class movimientos extends Model
     use HasFactory;
 
     protected $fillable = [
+        'autorizado_por',
+        'observacion',
         'departamento_origen',
         'departamento_destino',
         'usuario_origen',
@@ -18,4 +20,8 @@ class movimientos extends Model
         'id_articulo'
     ];
 
+    public function articulo()
+    {
+        return $this->belongsTo(articulos::class, 'id_articulo');
+    }
 }

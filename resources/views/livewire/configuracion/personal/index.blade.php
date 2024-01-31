@@ -59,9 +59,9 @@
                     <button class="btn btn-warning btn-circle btn-sm" type="button" data-toggle="modal" data-target="#editar" wire:click="abrirModal({{ $item }})">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger btn-circle btn-sm" type="button" data-toggle="modal" data-target="#borrar" wire:click="abrirModal({{ $item }})">
+                    {{-- <button class="btn btn-danger btn-circle btn-sm" type="button" data-toggle="modal" data-target="#borrar" wire:click="abrirModal({{ $item }})">
                         <i class="fas fa-trash"></i>
-                    </button>
+                    </button> --}}
                 </div>
             </td>
             </tr>

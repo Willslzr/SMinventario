@@ -5,7 +5,12 @@
     <title>SMinventario</title>
 </head>
 <body>
-    <h2 class="mt-5" style="text-align: center;">Ultimos movimientos</h2>
+    @if ($historial->isEmpty())
+        <tr>
+            <td colspan="7" class="text-center py-4">No hay registros</td>
+        </tr>
+    @else
+    <h2 style="text-align: center;"></h2>
     <table style="margin: 40px auto; border-collapse: collapse; border: 1px solid black;">
         <thead style="background-color: #eee;">
             <tr>
@@ -30,5 +35,6 @@
             @endforeach
         </tbody>
     </table>
+    @endif
 </body>
 </html>

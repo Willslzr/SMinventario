@@ -29,6 +29,8 @@ Route::get('/reporte/general', [DashboardController::class, 'reportegeneral'])->
 Route::get('/reporte/movimientos', [DashboardController::class, 'reportemovimientos'])->middleware('auth')->name('reporte.movimientos');
 Route::get('/reporte/materiales', [DashboardController::class, 'reportearticulos'])->middleware('auth')->name('reporte.inventario');
 Route::get('/reporte/recibidos', [DashboardController::class, 'reportearticulosrecibidos'])->middleware('auth')->name('reporte.reportearticulosrecibidos');
+Route::get('/recibido/{id}/{articulo}', [DashboardController::class, 'recibido'])->middleware('auth')->name('recibido');
+Route::get('/reporte/articulo/{id}', [DashboardController::class, 'reportearticulohistorial'])->middleware('auth')->name('dashboard.articulo.historial');
 
 Route::get('/personal/index', [PersonalController::class, 'index'])->middleware('auth')->name('personal.index');
 Route::get('/personal/show/{id}', [PersonalController::class, 'show'])->middleware('auth')->name('personal.show');
@@ -48,6 +50,7 @@ Route::post('configuracion/personal/store',[ConfiguracionController::class, 'per
 Route::get('configuracion/categorias',[ConfiguracionController::class, 'categorias'])->middleware('auth')->name('configuracion.categorias');
 Route::post('configuracion/categorias/store',[ConfiguracionController::class, 'categoriasstore'])->middleware('auth')->name('configuracion.categorias.store');
 
+Route::get('/', [loginController::class, 'index'])->middleware('guest');
 Route::get('/login', [loginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login/auth', [LoginController::class, 'login'])->middleware('guest')->name('login.auth');

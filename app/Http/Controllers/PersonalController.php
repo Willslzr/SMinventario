@@ -23,17 +23,17 @@ class PersonalController extends Controller
         ->toArray();
 
         $equipos = articulos::whereNotNull('numero_de_serie')
-        ->where('id_encargado', $empleado->id)
+        ->where('nombre_encargado', $empleado->nombre)
         ->get();
 
         $articulos = articulos::where('numero_de_serie', null)
-        ->where('id_encargado', $empleado->id)
+        ->where('nombre_encargado', $empleado->nombre)
         ->groupBy('nombre_categoria')
         ->selectRaw('nombre_categoria, count(*) as cantidad')
         ->get();
 
         $materiales = articulos::where('numero_de_serie', null)
-        ->where('id_encargado', $empleado->id)
+        ->where('nombre_encargado', $empleado->nombre)
         ->orderBy('updated_at', 'desc')
         ->take(30)
         ->get();

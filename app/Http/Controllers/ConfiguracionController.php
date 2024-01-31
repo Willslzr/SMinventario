@@ -50,14 +50,17 @@ class ConfiguracionController extends Controller
 
     public function personalstore(request $request){
 
+        $request->merge(['nombre' => strtoupper($request->input('nombre'))]);
+
         $validator = Validator::make($request->all(), [
-            'nombre' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255', 'unique:personals'],
             'foto' => ['mimes:jpeg,png,jpg,svg'],
             'departamento' => ['required'],
         ]);
 
         $validator->setCustomMessages([
             'nombre' => 'Nombre invalido',
+            'nombre.unique' => 'Usuario registrado',
             'departamento' => ['No selecciono departamento']
         ]);
 
@@ -96,14 +99,17 @@ class ConfiguracionController extends Controller
 
     public function categoriasstore(request $request){
 
+        $request->merge(['nombre' => strtoupper($request->input('nombre'))]);
+
         $validator = Validator::make($request->all(), [
-            'nombre' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255', 'unique:categorias'],
             'descripcion' => ['required', 'string', 'max:1000'],
             'foto' => ['mimes:jpeg,png,jpg,svg'],
         ]);
 
         $validator->setCustomMessages([
             'nombre' => 'Nombre invalido',
+            'nombre.unique' => 'Nombre duplicado',
             'descripcion.required' => 'Descripcion Invalida',
             'descripcion.string' => 'Descripcion Invalida2',
             'descripcion.max' => 'Descripcion Invalida3',

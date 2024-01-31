@@ -82,6 +82,9 @@
                                     </td>
                                     <td style="text-align: center; vertical-align: middle;">
                                         <div class="btn-group">
+                                            <a href="{{ route('recibido', [$empleado->id, $item->id]) }}" target="_blank" class="btn btn-primary mx-1 btn-sm" type="button">
+                                                <i class="fas fa-file-upload"></i>
+                                            </a>
                                             <a href="{{ route('dashboard.codigoqr', $item->id) }}" target="_blank" class="btn btn-success mx-1 btn-sm" type="button">
                                                 <i class="fas fa-qrcode"></i>
                                             </a>
@@ -101,7 +104,7 @@
                             <table class="table table-striped table-hover align-items-center mb-2 rounded table-sm">
                             <thead class="bg-gradient-primary text-center text-uppercase text-white font-weight-bolder">
                                 <tr>
-                                <th>Nombre</th>
+                                <th>Material</th>
                                 <th>Recibido</th>
                                 </tr>
                             </thead>

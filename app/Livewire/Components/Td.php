@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\articulos;
 use App\Models\categorias;
 use App\Models\movimientos;
+use Illuminate\Support\Facades\Auth;
 
 class Td extends Component
 {
@@ -25,11 +26,15 @@ class Td extends Component
             'nombre_encargado' => 'almacen',
         ]);
 
+        $autorizadopor= Auth::user()->name;
+
         movimientos::create([
+            'autorizado_por' => $autorizadopor,
+            'observacion' => 'Se regresa equipo al inventario',
             'departamento_origen' => $this->empleado->nombre_departamento,
             'departamento_destino' => 'inventario',
             'usuario_origen' => $this->empleado->nombre,
-            'usuario_destino' => 'almacen',
+            'usuario_destino' => 'INVENTARIO',
             'nombre_articulo' => $this->equipo->nombre_categoria,
             'id_articulo' => $this->equipo->id,
         ]);

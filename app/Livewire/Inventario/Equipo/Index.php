@@ -28,6 +28,8 @@ class Index extends Component
     public $numeroSerie;
     public $select;
 
+    public $observacion;
+
     public $empleados;
 
     protected $paginationTheme = 'bootstrap';
@@ -68,11 +70,14 @@ class Index extends Component
                     'numero_de_serie' => $articulo->numero_de_serie,
                 ]);
 
+                $usuarioActual = auth()->user()->name;
 
         movimientos::create([
+            'autorizado_por' => $usuarioActual,
+            'observacion' => $this->observacion,
             'departamento_origen' => 'INVENTARIO',
             'departamento_destino' => $empleado->nombre_departamento,
-            'usuario_origen' => 'almacen',
+            'usuario_origen' => 'INVENTARIO',
             'usuario_destino' => $empleado->nombre,
             'nombre_articulo' => $categoria->nombre,
             'id_articulo' => $articulo->id,

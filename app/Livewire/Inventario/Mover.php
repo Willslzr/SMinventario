@@ -18,6 +18,13 @@ class Mover extends Component
     public $restante;
     public $total;
 
+    public function rules()
+    {
+        return [
+            'cantidad' => 'required|numeric|min:1|max:' . $this->total,
+        ];
+    }
+
     public function mount(){
         $this->personal = personals::all()->toArray();
         $this->imagenReferencia = $this->personal[0]['foto'];

@@ -14,6 +14,7 @@
                 <th style="text-align: center; border: 1px solid black;">Origen</th>
                 <th style="text-align: center; border: 1px solid black;">Destino</th>
                 <th style="text-align: center; border: 1px solid black;">Fecha</th>
+                <th style="text-align: center; border: 1px solid black;">observacion</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                 <td style="text-align: center; padding: 10px; border: 1px solid black;">{{ $item->usuario_origen }}</td>
                 <td style="text-align: center; padding: 10px; border: 1px solid black;">{{ $item->usuario_destino }}</td>
                 <td style="text-align: center; padding: 10px; border: 1px solid black;">{{ $item->updated_at }}</td>
+                <td style="text-align: center; padding: 10px; border: 1px solid black;">{{ $item->observacion }}</td>
             </tr>
             @endforeach
         </tbody>

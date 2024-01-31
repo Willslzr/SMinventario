@@ -7,13 +7,13 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <div
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
                         <div class="form-group">
                             <h5 style="vertical-align: middle;">INSTITUTO UNIVERSITARIO POLITECNICO SANTIAGO MARIÑO</h5>
-                            <img src="images/santiagologo.svg" class="ml-2" alt="SM" style="display: inline-block; vertical-align: middle; height: 2em;">
+                            {{-- <img src="images/santiagologo.svg" class="ml-2" alt="SM" style="display: inline-block; vertical-align: middle; height: 2em;"> --}}
                         </div>
-                    </form>
+                    </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -22,14 +22,17 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
+                            @php
+                            $usuario = auth()->user()->name;
+                            @endphp
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario</span>
-                                <img class="img-profile rounded-circle"
-                                    src="images/perfil/default.jpg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $usuario }}</span>
+                                {{-- <img class="img-profile rounded-circle"
+                                    src="images/perfil/default.jpg"> --}}
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            {{-- <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -48,7 +51,7 @@
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
-                            </div>
+                            </div> --}}
                         </li>
 
                     </ul>

@@ -88,10 +88,13 @@ class InventarioController extends Controller
             ->where('nombre_encargado', 'almacen')
             ->first();
 
+            $usuarioActual = auth()->user()->name;
+
             movimientos::create([
+                'autorizado_por' => $usuarioActual,
                 'departamento_origen' => 'INVENTARIO',
                 'departamento_destino' => $empleado->nombre_departamento,
-                'usuario_origen' => 'almacen',
+                'usuario_origen' => 'INVENTARIO',
                 'usuario_destino' => $empleado->nombre,
                 'nombre_articulo' => $articulo->nombre_categoria,
                 'id_articulo' => $articulo->id,

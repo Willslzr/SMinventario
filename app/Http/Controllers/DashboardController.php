@@ -7,6 +7,7 @@ use App\Models\personals;
 use App\Models\movimientos;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DashboardController extends Controller
@@ -43,6 +44,22 @@ class DashboardController extends Controller
     }
 
 
+    public function recibido($empleado, $articulo){
+        // dd('recibido');
+        $persona = personals::where('id', $empleado)->first();
+
+        $historial = movimientos::where('id_articulo', $articulo)
+        ->orderBy('created_at', 'desc')
+        ->take(30)
+        ->get();
+
+        $usuario = Auth::user()->name;
+
+        $pdf = Pdf::loadView('reportes.recibido', compact('historial', 'usuario'));
+
+
+        return $pdf->stream('recibido.pdf');
+    }
     public function reporteEquipos($empleado){
 
         $persona = personals::where('id', $empleado)->first();
@@ -87,6 +104,8 @@ class DashboardController extends Controller
         ->orderBy('created_at', 'desc')
         ->take(30)
         ->get();
+
+        // dd($historial);
 
 
 
@@ -153,6 +172,33 @@ class DashboardController extends Controller
 
 
         return $pdf->stream('reporte_recibidos.pdf');
+    }
+
+    public function reportearticulohistorial($articulo){
+
+        $historial = movimientos::where('id_articulo', $articulo)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        // dd($articulo, $historial);
+
+        $articulos = articulos::select('nombre_categoria', 'numero_de_serie')
+        ->selectRaw('created_at, COUNT(*) as cantidad')
+        ->groupBy('created_at', 'nombre_categoria', 'numero_de_serie')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+
+        $pdf = Pdf::loadView('reportes.articulohistorial', compact('historial'));
+
+        if ($pdf) {
+            // Redirigir a la pantalla anterior
+            return redirect()->back()->with('error', 'No se pudo generar el reporte');
+        }
+
+
+        return $pdf->stream('reporte_articulo_historial.pdf');
+
     }
 
 

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
+            $table->string('autorizado_por');
+            $table->text('observacion')->nullable();
             $table->string('departamento_origen');
             $table->string('departamento_destino');
             $table->string('usuario_origen');

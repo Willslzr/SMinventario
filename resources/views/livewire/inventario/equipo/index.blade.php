@@ -76,9 +76,9 @@
                         <i class="fas fa-upload"></i>
                     </button>
 
-                    <button class="btn btn-danger btn-circle btn-sm" type="button" data-toggle="modal" data-target="#borrar" wire:click="abrirModal({{ $articulo }})">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <a href="{{ route('dashboard.articulo.historial', $articulo->id) }}" target="_blank" class="btn btn-primary btn-circle btn-sm" style="margin-bottom: 0" data-toggle="tooltip" data-original-title="Historial">
+                        <i class="fas fa-file-contract"></i>
+                    </a>
                 </div>
             </td>
             </tr>
@@ -89,29 +89,6 @@
 
 {{ $articulos->links() }}
 
-    <div wire:ignore.self class="modal fade" id="ver" tabindex="-1" role="dialog" aria-labelledby="verLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-gradient-light">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="verLabel"></h4>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
-                            <input type="text" class="form-control form-control-user" name="nombre" id="nombre" wire:model="nombre" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control form-control-user" name="descripcion" id="descripcion" wire:model="descripcion" style="height: auto" rows="5" readonly></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div wire:ignore.self class="modal fade" id="asignar" tabindex="-1" role="dialog" aria-labelledby="asignarLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -145,6 +122,10 @@
                                 @endif
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Observacion</label>
+                        <textarea class="form-control form-control-user" name="observacion" id="observacion" wire:model="observacion" style="height: auto" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

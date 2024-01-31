@@ -16,11 +16,15 @@
 
                 <div class="col-sm-3 mb-3 mb-sm-0">
                     <label for="Cantidad" class="ml-3">Cantidad de articulos</label>
-                    <input type="number" class="form-control form-control-user" min="1" max="{{$total}}" name="cantidad" id="cantidad" wire:model.live="cantidad">
+                    <input type="number" class="form-control form-control-user" min="1" max="{{$this->total}}" name="cantidad" id="cantidad" wire:model.live="cantidad">
+
+                    @error('cantidad')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
-                    <label for="Serie" class="ml-3">Restante en inventario</label>
-                    <input type="text" class="form-control form-control-user" name="restante" id="restante" wire:model="restante" disabled>
+                    <label for="Serie" class="ml-3">Total en inventario</label>
+                    <input type="text" class="form-control form-control-user" name="restante" id="restante" value="{{$total}}" disabled>
                 </div>
             </div>
 

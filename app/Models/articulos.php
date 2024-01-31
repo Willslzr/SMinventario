@@ -26,4 +26,9 @@ class articulos extends Model
         return $this->belongsTo(categorias::class, 'id_categoria');
     }
 
+    public function movimientos()
+    {
+        return $this->hasMany(movimientos::class, 'id_articulo');
+    }
+
 }

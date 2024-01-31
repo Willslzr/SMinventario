@@ -34,7 +34,7 @@ class registerController extends Controller
         }
 
         User::create([
-            'name' => strtoupper($request->nombres . ' ' . $request->apellidos),
+            'name' => strtoupper($request->name),
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);

@@ -22,7 +22,7 @@
                         <div class="card">
                             <div class="card-header bg-gradient-primary text-white">
                             <h5 class="font-weight-bolder">Registrar</h5>
-                            <p class="mb-0">Nuevo tipo de producto</p>
+                            <p class="mb-0">Nuevo departamento</p>
                             </div>
                             <div class="card-body">
 
